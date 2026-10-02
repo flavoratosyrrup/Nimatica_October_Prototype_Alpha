@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://n0geys57rpko"]
+
+[ext_resource type="Texture2D" uid="uid://xbbbtqblt25o" path="res://ASSET FILES/skybox.png" id="1_jhf3l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8po0"]
+disable_specular_occlusion = true
+albedo_color = Color(0.6452097, 0.6452098, 0.6452097, 1)
+albedo_texture = ExtResource("1_jhf3l")
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_uj04i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uj04i"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0udnx"]
+panorama = ExtResource("1_jhf3l")
+
+[sub_resource type="Sky" id="Sky_jc63w"]
+sky_material = SubResource("PanoramaSkyMaterial_0udnx")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_uj04i"]
+background_mode = 2
+sky = SubResource("Sky_jc63w")
+
+[node name="Node3D" type="Node3D" unique_id=847608428]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1220032673]
+transform = Transform3D(5, 0, 0, 0, 0.5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=92363801]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -0.5039793, 0)
+material_override = SubResource("StandardMaterial3D_j8po0")
+gi_mode = 0
+mesh = SubResource("BoxMesh_uj04i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=889402331]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, -0.500731, 0)
+shape = SubResource("BoxShape3D_uj04i")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1759555825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2562123, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1975112649]
+environment = SubResource("Environment_uj04i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1115842806]
+transform = Transform3D(1, 0, 0, 0, 0.50000006, 0.8660254, 0, -0.8660254, 0.50000006, 0, 3, 3)
+light_energy = 1.825
